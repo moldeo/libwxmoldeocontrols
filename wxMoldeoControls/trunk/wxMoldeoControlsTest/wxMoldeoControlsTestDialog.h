@@ -17,7 +17,7 @@ using namespace std;
 #include <wx/aui/auibook.h>
 #include "wxMoldeoControls.h"
 
-//#include "wxMoGLCanvas.h"
+/*#include "wxMoGLCanvas.h"*/
 
 class wxMoldeoControlsTestDialog: public wxDialog
 {

@@ -17,6 +17,10 @@
 					<Add option="-g" />
 					<Add option="`wx-config --cflags --debug=no`" />
 				</Compiler>
+				<ExtraCommands>
+					<Add after="cp.exe ../../lib/win/libmoldeocontrolsd.a ../../../../binaries/lib/win" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="..\..\lib\win\libmoldeocontrols" prefix_auto="1" extension_auto="1" />
@@ -32,6 +36,10 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="cp.exe ../../lib/win/libmoldeocontrols.a ../../../../binaries/lib/win" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<VirtualTargets>
@@ -74,6 +82,10 @@
 			<Add library="glaux" />
 			<Add library="gdi32" />
 		</Linker>
+		<ExtraCommands>
+			<Add after="cp.exe ../../wxMoldeoControls/*.h ../../../../binaries/include/wxMoldeoControls" />
+			<Mode after="always" />
+		</ExtraCommands>
 		<Unit filename="..\..\wxMoldeoControls\wxMoAuiTabArt.cpp" />
 		<Unit filename="..\..\wxMoldeoControls\wxMoAuiTabArt.h" />
 		<Unit filename="..\..\wxMoldeoControls\wxMoColour.cpp" />
