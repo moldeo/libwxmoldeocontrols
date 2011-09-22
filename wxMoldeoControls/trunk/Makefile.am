@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS=-I m4
-SUBDIRS = wxMoldeoControls wxMoldeoControlsTest
+SUBDIRS = wxMoldeoControls
 
 EXTRA_DIST = AUTHORS ChangeLog NEWS README
 

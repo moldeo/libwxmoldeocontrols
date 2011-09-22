@@ -11,11 +11,11 @@ Homepage: http://www.moldeo.org
 Package: libmoldeocontrols-dev
 Section: libdevel
 Architecture: amd64
-Depends: libmoldeocontrols1 (= ${binary:Version})
+Depends: libmoldeocontrols (= ${binary:Version})
 Description: wxGTK Moldeo Controls
  wxMoldeoControls is a package of widgets specially designed for multimedia interfaces.
 
-Package: libmoldeocontrols1
+Package: libmoldeocontrols
 Section: libs
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
