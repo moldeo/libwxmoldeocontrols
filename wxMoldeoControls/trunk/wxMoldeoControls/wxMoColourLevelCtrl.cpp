@@ -73,7 +73,7 @@ wxMoColourLevelCtrl::UpdatePattern() {
     wxImage::RGBValue RGBVal;
 
     if (!m_Pattern.IsOk()) {
-      wxMessageBox(wxString("moWxMoColorLevelCtrl UpdatePattern error - IsOk not ok!! "));
+      wxMessageBox( _T("moWxMoColorLevelCtrl UpdatePattern error - IsOk not ok!! ") );
     } else {
 
       ///initialize memory dc to the bitmap
@@ -166,7 +166,7 @@ wxMoColourLevelCtrl::CreatePattern() {
         /// this bitmap is inverted to simulate this behaviour
         /// left, full opaque pattern, right, full transparent
         if (!m_Pattern.Create( sz.GetWidth(), sz.GetHeight(), 24 )) {
-            wxMessageBox(wxString("wxMoColourLevelCtrl error creating pattern bitmap."));
+            wxMessageBox(_T("wxMoColourLevelCtrl error creating pattern bitmap."));
         } else {
           ///initialize memory dc to the bitmap
 
@@ -191,7 +191,7 @@ wxMoColourLevelCtrl::CreatePattern() {
           pPatternImage = new wxImage( m_Pattern.ConvertToImage() );
 
           if ( !pPatternImage ) {
-            wxMessageBox(wxString("wxMoColourLevelCtrl error creating m_ImagePattern."));
+            wxMessageBox(_T("wxMoColourLevelCtrl error creating m_ImagePattern."));
           } else {
 
             pPatternImage->InitAlpha();
@@ -221,7 +221,7 @@ wxMoColourLevelCtrl::CreatePattern() {
       case VALUE:
         ///create now, update dynamically
         if (!m_Pattern.Create( sz.GetWidth(), sz.GetHeight(), 24 )) {
-            wxMessageBox(wxString("wxMoColourLevelCtrl error creating pattern bitmap."));
+            wxMessageBox(_T("wxMoColourLevelCtrl error creating pattern bitmap."));
         }
         break;
     }
@@ -382,7 +382,7 @@ wxMoColourLevelCtrl::OnPaint(wxPaintEvent& event) {
       case HUE:
       case SATURATION:
       case VALUE:
-        d.Printf( "h:%2.2f s:%2.2f v:%2.2f", m_HSVValue.hue, m_HSVValue.saturation, m_HSVValue.value );
+        d.Printf( _T("h:%2.2f s:%2.2f v:%2.2f"), m_HSVValue.hue, m_HSVValue.saturation, m_HSVValue.value );
         break;
     }
 
@@ -393,11 +393,11 @@ wxMoColourLevelCtrl::OnPaint(wxPaintEvent& event) {
     if (m_Init) {
       dc.SetTextForeground( wxColour(255,255,255) );
       if (m_bStartDragging) {
-        s.Printf( "%i", m_value);
+        s.Printf( _T("%i"), m_value);
       } else {
-        s.Printf("");
+        s.Printf(_T(""));
       }
-    } else s.Printf("need init");
+    } else s.Printf(_T("need init"));
 
     textsize = dc.GetTextExtent(s);
     dc.DrawText( s, (GetSize().x/2) - (textsize.x/2), (GetSize().y/2) - (textsize.y/2) );

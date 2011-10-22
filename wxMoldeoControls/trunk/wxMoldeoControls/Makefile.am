@@ -33,7 +33,7 @@ wxMoTimelineRulerCtrl.cpp\
 wxMoTimelineRulerCtrl.h
 
 
-libmoldeocontrols_la_CPPFLAGS = `pkg-config --cflags gtk+-2.0` \
+libmoldeocontrols_la_CPPFLAGS = ${GTK2_CFLAGS} \
 	${WX_CFLAGS} 
 
 libmoldeocontrols_la_LIBADD = 	${WX_LIBS}

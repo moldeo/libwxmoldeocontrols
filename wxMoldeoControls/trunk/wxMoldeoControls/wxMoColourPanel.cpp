@@ -26,7 +26,7 @@ wxPanel( parent, id,  pos, size, style | wxNO_BORDER | wxFULL_REPAINT_ON_RESIZE,
   SetBackgroundStyle(wxBG_STYLE_CUSTOM );
 
   if (!m_Pattern.Create( size.GetWidth(), size.GetHeight(), 24 )) {
-        wxMessageBox(wxString("wxMoColourPanel error creating pattern bitmap."));
+        wxMessageBox(_T("wxMoColourPanel error creating pattern bitmap."));
   }
 
 }
@@ -172,7 +172,7 @@ void wxMoColourPanel::UpdatePattern() {
       ///We draw the bitmap as a transparent coloured and filtered by the actual colour value wxImage
 
       if ( !pPatternImage ) {
-        wxMessageBox(wxString("wxMoColourPanel error creating m_ImagePattern."));
+        wxMessageBox(_T("wxMoColourPanel error creating m_ImagePattern."));
       } else {
 
               ///wxMessageBox("draw bitmap");
@@ -243,7 +243,7 @@ wxMoColourPanel::OnSize( wxSizeEvent& event ) {
       #endif
 
       if (!m_Pattern.Create( event.GetSize().GetWidth(), event.GetSize().GetHeight(), 24 )) {
-        wxMessageBox(wxString("wxMoColourPanel error creating pattern bitmap."));
+        wxMessageBox(_T("wxMoColourPanel error creating pattern bitmap."));
       }
 
       //SetSize( event );
