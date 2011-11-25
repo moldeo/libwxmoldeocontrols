@@ -78,14 +78,34 @@ echo "extracting..."
 }
 
 echo " 
-Now execute in deb folder:
+Now execute in deb folder for ubuntu 9.10:
  cd deb/libmoldeocontrols-*
  dh_make -l -e fabricio.costa@moldeointeractive.com.ar
  cp ../../control.amd64 debian/control
  cp ../../rules.amd64 debian/rules
  cp ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install
+ cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install
  vi debian/changelog
  dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
+
+Now execute in deb folder for ubuntu 10.10:
+ cd deb/libmoldeocontrols-*
+ dh_make -l -e fabricio.costa@moldeointeractive.com.ar
+ cp ../../control.amd64 debian/control
+ cp ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install
+ cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install
+ vi debian/changelog
+ dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
+
+Now execute in deb folder for ubuntu 11.10:
+ cd deb/libmoldeocontrols-*
+ dh_make -l -e fabricio.costa@moldeointeractive.com.ar
+ cp ../../control.amd64.11.10 debian/control
+ cp ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install
+ cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install
+ vi debian/changelog
+ dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
+
 "
 
 
