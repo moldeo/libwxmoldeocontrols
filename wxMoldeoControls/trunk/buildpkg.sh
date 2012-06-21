@@ -54,7 +54,7 @@ echo "renaming..."
   echo ""
   exit 1
 }
-( rename 's/[A-Z]/[a-z/' deb/*.tar.gz ) > /dev/null || {
+( rename 's/A-Z/a-z/' deb/*.tar.gz ) > /dev/null || {
   echo
   echo "**Error**: renaming to lowercase."
   echo ""
@@ -80,9 +80,12 @@ echo "extracting..."
 echo " 
 Now execute in deb folder for ubuntu 9.10:
  cd deb/libmoldeocontrols-*
- dh_make -l -e fabricio.costa@moldeointeractive.com.ar
+ dh_make -l -e fabricio.costa@moldeointeractive.com.ar -p libmoldeocontrols
  cp ../../control.amd64 debian/control
  cp ../../rules.amd64 debian/rules
+ cp ../../libmoldeocontrols.dirs.amd64 debian/libmoldeocontrols.dirs
+ cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install 
+ cp ../../libmoldeocontrols-dev.dirs.amd64 debian/libmoldeocontrols-dev.dirs
  cp ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install
  cp ../../libmoldeocontrols-dev.dirs.amd64 debian/libmoldeocontrols-dev.dirs
  cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install
