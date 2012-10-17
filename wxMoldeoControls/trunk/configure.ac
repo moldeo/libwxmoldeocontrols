@@ -21,13 +21,15 @@ AC_PROG_CXX_C_O
 dnl Check gtk+-2.0
 PKG_CHECK_MODULES([GTK2], [gtk+-2.0] ,has_gtk2=yes)
 
+wxversion=2.8.0
+
 dnl Check wx-Widgets
 AC_ARG_ENABLE([unicode],[AC_HELP_STRING([--disable-unicode],[internally use ansi])], 
 	[AS_IF([test "x$enableval" = "xno"],[wx_config_args="--unicode=no"])
 	AS_IF([test "x$enableval" = "xyes"],[wx_config_args="--unicode=yes"])],
-	[wx_config_args="--unicode=no"])
+	[wx_config_args="--unicode=yes"])
 AM_OPTIONS_WXCONFIG
-AM_PATH_WXCONFIG(2.8.0, wxWin=1)
+AM_PATH_WXCONFIG($wxversion, wxWin=1)
         if test "$wxWin" != 1; then
         AC_MSG_ERROR([
                 wxWidgets must be installed on your system.
@@ -36,7 +38,7 @@ AM_PATH_WXCONFIG(2.8.0, wxWin=1)
                 where wxWidgets libraries are installed (returned by
                 'wx-config --libs' or 'wx-config --static --libs' command)
                 is in LD_LIBRARY_PATH or equivalent variable and
-                wxWindows version is 2.8.0 or above.
+                wxWindows version is 2.8.0 or above. Unicode version needed.
                 ])
         fi
 
