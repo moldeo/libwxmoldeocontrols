@@ -87,9 +87,6 @@ Now execute in deb folder for ubuntu 9.10:
  cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install 
  cp ../../libmoldeocontrols-dev.dirs.amd64 debian/libmoldeocontrols-dev.dirs
  cp ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install
- cp ../../libmoldeocontrols-dev.dirs.amd64 debian/libmoldeocontrols-dev.dirs
- cp ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install
- cp ../../libmoldeocontrols.dirs.amd64 debian/libmoldeocontrols.dirs
  vi debian/changelog
  dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
 
@@ -114,6 +111,14 @@ Now execute in deb folder for ubuntu 11.10:
  cp ../../libmoldeocontrols.dirs.amd64 debian/libmoldeocontrols.dirs
  vi debian/changelog
  dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
+
+Now execute in deb folder for ubuntu 12.10:
+ cd deb/libmoldeocontrols-*
+ dh_make -l -e info@moldeointeractive.com.ar
+ gedit ../../control.amd64.11.10 debian/control ../../libmoldeocontrols-dev.install.amd64 debian/libmoldeocontrols-dev.install ../../libmoldeocontrols-dev.dirs.amd64 debian/libmoldeocontrols-dev.dirs ../../libmoldeocontrols.install.amd64 debian/libmoldeocontrols.install ../../libmoldeocontrols.dirs.amd64 debian/libmoldeocontrols.dirs debian/changelog
+ dpkg-buildpackage -us -uc -rfakeroot 2>&1 | tee ../../buildpkg_logs.txt
+
+
 
 "
 
