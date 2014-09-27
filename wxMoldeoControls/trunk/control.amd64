@@ -1,6 +1,6 @@
 Source: libmoldeocontrols
 Priority: extra
-Maintainer: Fabricio Costa <fabricio.costa@moldeointeractive.com.ar>
+Maintainer: Moldeo Interactive <fabricio.costa@moldeointeractive.com.ar>
 Build-Depends: debhelper (>= 7.0.50~), autotools-dev
 Standards-Version: 3.8.4
 Section: libs
@@ -12,12 +12,12 @@ Package: libmoldeocontrols-dev
 Section: libdevel
 Architecture: amd64
 Depends: libmoldeocontrols (= ${binary:Version})
-Description: wxGTK Moldeo Controls
+Description: Moldeo extensions for wxWidgets, development files
  wxMoldeoControls is a package of widgets specially designed for multimedia interfaces.
 
 Package: libmoldeocontrols
 Section: libs
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: wxGTK Moldeo Controls
+Description: Moldeo extensions for wxWidgets
  wxMoldeoControls is a package of widgets specially designed for multimedia interfaces.

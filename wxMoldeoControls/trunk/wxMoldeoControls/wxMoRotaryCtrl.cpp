@@ -21,8 +21,8 @@ BEGIN_EVENT_TABLE( wxMoRotaryCtrl, wxControl )
     EVT_KILL_FOCUS(wxMoRotaryCtrl::OnKillFocus)
 END_EVENT_TABLE()
 
-template<> const float wxMoRotaryCtrl::PI = (float)(4.0*atan(1.0));
-template<> const float wxMoRotaryCtrl::PI2 = (float)(8.0*atan(1.0));
+const float wxMoRotaryCtrl::PI = (float)(4.0*atan(1.0));
+const float wxMoRotaryCtrl::PI2 = (float)(8.0*atan(1.0));
 
 wxMoRotaryCtrl::wxMoRotaryCtrl( wxWindow* parent, wxWindowID id, const int value, const int minvalue, const int maxvalue, const wxPoint& pos, const wxSize& size, long style, const wxValidator& validator, const wxString& name  ) :
 wxControl( parent, id,  pos, size, style | wxNO_BORDER, validator, name ) {
