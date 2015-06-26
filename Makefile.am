@@ -8,8 +8,8 @@ EXTRA_DIST = AUTHORS ChangeLog NEWS README
 pkgconfigdir = @pkgconfigdir@
 pkgconfig_DATA = moldeocontrols.pc
 
-datadir = ${prefix}/share/wxMoldeoControls
-docdir = ${prefix}/share/doc/wxMoldeoControls
+datadir = ${prefix}/share/moldeo/data
+docdir = ${prefix}/share/doc/moldeo/wxMoldeoControls
 cursorsdir = ${datadir}/cursors
 fontsdir = ${datadir}/fonts
 iconsdir = ${datadir}/icons
