@@ -5,11 +5,12 @@
 		<Option title="wxMoldeoControls" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="..\..\lib\win\libmoldeocontrolsd" prefix_auto="1" extension_auto="1" />
+				<Option output="../../lib/win/moldeocontrolsd" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="wobjd\Debug" />
+				<Option object_output="wobjd/Debug" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -17,17 +18,17 @@
 					<Add option="-g" />
 					<Add option="`wx-config --cflags --debug=no`" />
 					<Add option="-DUNICODE" />
-					<Add directory="..\..\..\..\externlibs\wxWidgets\lib\mingw_libu\wx\include\msw-unicode-release-static-2.8" />
+					<Add directory="$(externlibs)/wxWidgets/lib/mingw_libu/wx/include/msw-unicode-release-static-2.8" />
 				</Compiler>
 				<ExtraCommands>
-					<Add after="cp.exe ../../lib/win/libmoldeocontrolsd.a ../../../../binaries/lib/win" />
+					<Add after="cp.exe ../../lib/win/libmoldeocontrolsd.a ../../../lib/win" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release">
-				<Option output="..\..\lib\win\libmoldeocontrols" prefix_auto="1" extension_auto="1" />
+				<Option output="../../lib/win/moldeocontrols" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="wobj\Release" />
+				<Option object_output="wobj/Release" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -35,40 +36,40 @@
 					<Add option="-O2" />
 					<Add option="`wx-config --cflags --debug=no`" />
 					<Add option="-DUNICODE" />
-					<Add directory="..\..\..\..\externlibs\wxWidgets\lib\mingw_libu\wx\include\msw-unicode-release-static-2.8" />
+					<Add directory="$(externlibs)/wxWidgets/lib/mingw_libu/wx/include/msw-unicode-release-static-2.8" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cp.exe ../../lib/win/libmoldeocontrols.a ../../../../binaries/lib/win" />
+					<Add after="cp.exe ../../lib/win/libmoldeocontrols.a ../../../lib/win" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release Ansi">
-				<Option output="..\..\lib\win\libmoldeocontrols_ansi" prefix_auto="1" extension_auto="1" />
+				<Option output="../../lib/win/moldeocontrols_ansi" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="wobja\Release Ansi\" />
+				<Option object_output="wobja/Release Ansi/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="`wx-config --cflags --debug=no`" />
-					<Add directory="..\..\..\..\externlibs\wxWidgets\lib\mingw_lib\wx\include\msw-ansi-release-static-2.8" />
+					<Add directory="$(externlibs)/wxWidgets/lib/mingw_lib/wx/include/msw-ansi-release-static-2.8" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cp.exe ../../lib/win/libmoldeocontrols_ansi.a ../../../../binaries/lib/win" />
+					<Add after="cp.exe ../../lib/win/libmoldeocontrols_ansi.a ../../../lib/win" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Debug Ansi">
-				<Option output="..\..\lib\win\libmoldeocontrolsd_ansi" prefix_auto="1" extension_auto="1" />
+				<Option output="../../lib/win/moldeocontrolsd_ansi" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="wobja\Debug Ansi\" />
+				<Option object_output="wobja/Debug Ansi/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -76,19 +77,19 @@
 					<Add option="-O2" />
 					<Add option="-g" />
 					<Add option="`wx-config --cflags --debug=no`" />
-					<Add directory="..\..\..\..\externlibs\wxWidgets\lib\mingw_lib\wx\include\msw-ansi-release-static-2.8" />
+					<Add directory="$(externlibs)/wxWidgets/lib/mingw_lib/wx/include/msw-ansi-release-static-2.8" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cp.exe ../../lib/win/libmoldeocontrolsd_ansi.a ../../../../binaries/lib/win" />
+					<Add after="cp.exe ../../lib/win/libmoldeocontrolsd_ansi.a ../../../lib/win" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="All" targets="Debug;Release;Release Ansi;Debug Ansi;" />
+			<Add alias="All" targets="Debug;Release;" />
 			<Add alias="All Ansi" targets="Release Ansi;Debug Ansi;" />
 			<Add alias="All Debug" targets="Debug;Release;" />
 		</VirtualTargets>
@@ -97,7 +98,7 @@
 			<Add option="-D__WXMSW__" />
 			<Add directory="." />
 			<Add directory=".." />
-			<Add directory="..\..\..\..\externlibs\wxWidgets\include" />
+			<Add directory="$(externlibs)/wxWidgets/include" />
 		</Compiler>
 		<Linker>
 			<Add library="rpcrt4" />
@@ -120,34 +121,34 @@
 			<Add library="gdi32" />
 		</Linker>
 		<ExtraCommands>
-			<Add after="cp.exe ../../wxMoldeoControls/*.h ../../../../binaries/include/wxMoldeoControls" />
+			<Add after="cp.exe ../../wxMoldeoControls/*.h ../../../include/wxMoldeoControls" />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="..\..\wxMoldeoControls\wxMoAuiTabArt.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoAuiTabArt.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColour.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColour.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColourLevelCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColourLevelCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColourPanel.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoColourPanel.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoLevelCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoLevelCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoRotaryCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoRotaryCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoTimelineBandCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoTimelineBandCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoTimelineRulerCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoTimelineRulerCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoControls.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoLineCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoLineCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoObjectCanvas.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoObjectCanvas.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoObjectCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoObjectCtrl.h" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoPinCtrl.cpp" />
-		<Unit filename="..\..\wxMoldeoControls\wxMoldeoPinCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoAuiTabArt.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoAuiTabArt.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoColour.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoColour.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoColourLevelCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoColourLevelCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoColourPanel.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoColourPanel.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoLevelCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoLevelCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoRotaryCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoRotaryCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoTimelineBandCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoTimelineBandCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoTimelineRulerCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoTimelineRulerCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoControls.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoLineCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoLineCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoObjectCanvas.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoObjectCanvas.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoObjectCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoObjectCtrl.h" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoPinCtrl.cpp" />
+		<Unit filename="../../wxMoldeoControls/wxMoldeoPinCtrl.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
