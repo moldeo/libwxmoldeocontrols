@@ -22,36 +22,8 @@ AC_PROG_CXX_C_O
 dnl Check gtk+-2.0
 PKG_CHECK_MODULES([GTK2], [gtk+-2.0] ,has_gtk2=yes)
 
-wxversion=2.8.0
-
 dnl Check wx-Widgets
-AC_ARG_ENABLE([unicode],[AC_HELP_STRING([--disable-unicode],[internally use ansi])], 
-	[AS_IF([test "x$enableval" = "xno"],[wx_config_args="--unicode=no"])
-	AS_IF([test "x$enableval" = "xyes"],[wx_config_args="--unicode=yes"])],
-	[wx_config_args="--unicode=yes --version=2.8"])
-AM_OPTIONS_WXCONFIG
-AM_PATH_WXCONFIG($wxversion, wxWin=1)
-        if test "$wxWin" != 1; then
-        AC_MSG_ERROR([
-                wxWidgets must be installed on your system.
-
-                Please check that wx-config is in path, the directory
-                where wxWidgets libraries are installed (returned by
-                'wx-config --libs' or 'wx-config --static --libs' command)
-                is in LD_LIBRARY_PATH or equivalent variable and
-                wxWindows version is 2.8.0 or above. Unicode version needed.
-                ])
-        fi
-
-CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
-CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
-LIBS="$LIBS $WX_LIBS"
-
-AC_SUBST(CPPFLAGS)
-AC_SUBST(CXXFLAGS)
-AC_SUBST(CFLAGS)
-AC_SUBST(LIBS)
+WX_CONFIG_CHECK([2.8.0], [wxWin=1], [wxWin=0], [html,core,net,gl,aui], [--unicode])
 
 WX_GTK2_CFLAGS=
 WX_GTK2_LIBS=
@@ -83,6 +55,13 @@ case $WX_BASENAME in
     ;;
 esac
 
+LIBWXMOLDEOCONTROLS_CFLAGS=-I../wxMoldeoControls
+LIBWXMOLDEOCONTROLS_LIBS=-lmoldeocontrols
+LIBWXMOLDEOCONTROLS_LDFLAGS=-L../wxMoldeoControls/.libs
+AC_SUBST(LIBWXMOLDEOCONTROLS_CFLAGS)
+AC_SUBST(LIBWXMOLDEOCONTROLS_LDFLAGS)
+AC_SUBST(LIBWXMOLDEOCONTROLS_LIBS)
+
 AC_SUBST(WX_GTK2_CFLAGS)
 AC_SUBST(WX_GTK2_LIBS)
 
@@ -104,7 +83,6 @@ esac
 
 AC_SUBST(PLUGIN_WX_LIBS)
 
-
 dnl Additional arguments (and substitutions)
 dnl Allow the pkg-config directory to be set
 AC_ARG_WITH(pkgconfigdir,
@@ -115,4 +93,50 @@ AC_ARG_WITH(pkgconfigdir,
 
 AC_SUBST([pkgconfigdir])
 
-AC_OUTPUT(Makefile wxMoldeoControls/Makefile moldeocontrols.pc )
+
+dnl autoscan results
+AC_CHECK_FUNCS([floor])
+AC_CHECK_FUNCS([getcwd])
+AC_CHECK_FUNCS([memmove])
+AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([pow])
+AC_CHECK_FUNCS([rint])
+AC_CHECK_FUNCS([sqrt])
+AC_CHECK_FUNCS([strchr])
+AC_CHECK_FUNCS([strstr])
+AC_CHECK_HEADERS([fcntl.h])
+AC_CHECK_HEADERS([float.h])
+AC_CHECK_HEADERS([limits.h])
+AC_CHECK_HEADERS([stddef.h])
+AC_CHECK_HEADERS([stdlib.h])
+AC_CHECK_HEADERS([string.h])
+AC_CHECK_TYPES([ptrdiff_t])
+AC_C_INLINE
+AC_FUNC_MALLOC
+AC_FUNC_MEMCMP
+AC_FUNC_VPRINTF
+AC_HEADER_STDBOOL
+AC_HEADER_STDC
+AC_PREREQ
+AC_PROG_CPP
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+LT_INIT
+AC_STRUCT_TM
+AC_TYPE_SIZE_T
+
+AC_ARG_ENABLE(debug,
+AS_HELP_STRING([--enable-debug],
+               [enable debugging, default: no]),
+[case "${enableval}" in
+             yes) debug=true ;;
+             no)  debug=false ;;
+             *)   AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+esac],
+[debug=false])
+
+AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
+
+AC_OUTPUT(Makefile wxMoldeoControls/Makefile wxMoldeoControlsTest/Makefile moldeocontrols.pc )

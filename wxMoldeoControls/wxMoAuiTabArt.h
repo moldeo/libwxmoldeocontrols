@@ -2,6 +2,9 @@
 #define WX_MOAUITABART_H
 
 #include <wx/aui/auibook.h>
+#include <wx/app.h>
+
+#define wxASSERT(condition) {}
 
 #ifdef WXMAKINGDLL_MOAUITABART
     #define WXDLLIMPEXP_MOAUITABART WXEXPORT
@@ -10,6 +13,8 @@
 #else // not making nor using DLL
     #define WXDLLIMPEXP_MOAUITABART
 #endif
+
+#define WX_MAJOR_VERSION 3
 
 class WXDLLIMPEXP_MOAUITABART wxMoAuiTabArt : public wxAuiTabArt
 {
@@ -70,6 +75,13 @@ public:
     int GetBestTabCtrlSize(wxWindow* wnd,
                  const wxAuiNotebookPageArray& pages,
                  const wxSize& required_bmp_size);
+#if WX_MAJOR_VERSION>=3
+	void SetColour(const wxColour& colour);
+	void SetActiveColour(const wxColour& colour);
+	void DrawBorder(wxDC&, wxWindow*, const wxRect&);
+	int GetBorderWidth(wxWindow*);
+	int GetAdditionalBorderSpace(wxWindow*);
+#endif
 
 protected:
 

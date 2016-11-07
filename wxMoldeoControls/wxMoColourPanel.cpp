@@ -177,7 +177,7 @@ void wxMoColourPanel::UpdatePattern() {
 
               ///wxMessageBox("draw bitmap");
 
-              pPatternImage->InitAlpha();
+              if (!pPatternImage->HasAlpha()) pPatternImage->InitAlpha();
               for( i=0; i<pPatternImage->GetWidth(); i+=1) {
                 for( j=0; j<pPatternImage->GetHeight(); j+=1) {
                   ///rgb colour bitmap colour multiply actual colour value
@@ -210,7 +210,7 @@ void wxMoColourPanel::UpdatePattern() {
       ///wxMessageBox("draw color");
       if (pPatternImage) {
 
-              pPatternImage->InitAlpha();
+              if (!pPatternImage->HasAlpha()) pPatternImage->InitAlpha();
               for( i=0; i<pPatternImage->GetWidth(); i+=1) {
                 for( j=0; j<pPatternImage->GetHeight(); j+=1) {
                   pPatternImage->SetRGB( i, j, m_ColourValue.Red(), m_ColourValue.Green(), m_ColourValue.Blue() );
@@ -251,7 +251,11 @@ wxMoColourPanel::OnSize( wxSizeEvent& event ) {
       ResizeBitmap();
     }
 
-    wxPanel::OnSize( event );
+#if wxMAJOR_VERSION>=3
+    //wxPanel::InternalOnSize( event );
+#else
+	wxPanel::OnSize( event );
+#endif
 
 }
 

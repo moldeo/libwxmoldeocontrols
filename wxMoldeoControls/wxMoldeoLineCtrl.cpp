@@ -347,14 +347,19 @@ void wxMoldeoLineCtrl::OnMouseEvent( wxMouseEvent & event ) {
                 wxCommandEvent event( wxEVT_MOLDEOLINE_BEGINDRAGLEFT, m_windowId );
                 event.SetClientData( NULL );
                 event.SetEventObject( this );
+#if  wxMAJOR_VERSION>=3
+#else
                 GetParent()->GetParent()->AddPendingEvent( event );
+#endif
             }
 
             wxCommandEvent event( wxEVT_MOLDEOLINE_DRAGLEFT, m_windowId );
             event.SetClientData( NULL );
             event.SetEventObject( this );
+#if  wxMAJOR_VERSION>=3
+#else
             GetParent()->GetParent()->AddPendingEvent( event );
-
+#endif
             wxPoint PW = GetPosition();
             wxSize  SW = GetSize();
 

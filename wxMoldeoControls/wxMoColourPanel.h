@@ -31,6 +31,7 @@ class wxMoColourPanel : public wxPanel, public wxMoColour {
 
         void SetBitmap( const wxBitmap& bitmap );
 
+
         void OnSize( wxSizeEvent& event );
 
     protected:

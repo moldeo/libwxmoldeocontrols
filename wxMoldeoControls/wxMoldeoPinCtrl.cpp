@@ -340,8 +340,10 @@ void wxMoldeoPinCtrl::OnMouseEvent( wxMouseEvent & event ) {
                 wxCommandEvent event( wxEVT_MOLDEOPIN_BEGINDRAGLEFT, m_windowId );
                 event.SetClientData( NULL );
                 event.SetEventObject( this );
+#if wxMAJOR_VERSION>=3
+#else
                 GetParent()->GetParent()->AddPendingEvent( event );
-
+#endif
 
 /*
                 wxDropSource dragSource( this );

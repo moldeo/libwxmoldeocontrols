@@ -27,19 +27,67 @@
 
 #ifdef __WXGTK__
 #include <gtk/gtk.h>
-#include "wx/gtk/win_gtk.h"
+//#include "wx/gtk/win_gtk.h"
 #endif
 
 
 // these functions live in dockart.cpp -- they'll eventually
 // be moved to a new utility cpp file
-
+#if WX_MAJOR_VERSION<3
 wxColor wxAuiStepColour(const wxColor& c, int percent);
 
 wxBitmap wxAuiBitmapFromBits(const unsigned char bits[], int w, int h,
                              const wxColour& color);
 
 wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size);
+#else
+
+static wxColor wxAuiStepColour(const wxColor& c, int percent)
+{
+    int r = c.Red(), g = c.Green(), b = c.Blue();
+    return wxColour((unsigned char)wxMin((r*percent)/100,255),
+                    (unsigned char)wxMin((g*percent)/100,255),
+                    (unsigned char)wxMin((b*percent)/100,255));
+}
+
+// wxAuiBitmapFromBits() is a utility function that creates a
+// masked bitmap from raw bits (XBM format)
+static wxBitmap wxAuiBitmapFromBits(const unsigned char bits[], int w, int h,
+                               const wxColour& color)
+{
+    wxImage img = wxBitmap((const char*)bits, w, h).ConvertToImage();
+    img.Replace(255,255,255,123,123,123);
+    img.Replace(0,0,0,color.Red(),color.Green(),color.Blue());
+    img.SetMaskColour(123,123,123);
+    return wxBitmap(img);
+}
+
+static wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size)
+{
+    wxCoord x, y;
+
+    // first check if the text fits with no problems
+    dc.GetTextExtent(text, &x, &y);
+    if(x <= max_size) return text;
+
+    size_t i, len = text.Length();
+    size_t last_good_length = 0;
+    for(i = 0; i < len; ++i) {
+        wxString s = text.Left(i);
+        s += wxT("...");
+
+        dc.GetTextExtent(s, &x, &y);
+        if(x > max_size) break;
+
+        last_good_length = i;
+    }
+
+    wxString ret = text.Left(last_good_length);
+    ret += wxT("...");
+    return ret;
+}
+
+#endif
 
 static void DrawButtons(wxDC& dc,
                         const wxRect& _rect,
@@ -90,6 +138,7 @@ static void DrawFocusRect(wxWindow* win, wxDC& dc, const wxRect& rect, int flags
     ::DrawFocusRect(GetHdcOf(dc), &rc);
 
 #elif defined(__WXGTK20__)
+/*
     GdkWindow* gdk_window = dc.GetGDKWindow();
     wxASSERT_MSG( gdk_window,
                   wxT("cannot draw focus rectangle on wxDC of this type") );
@@ -109,7 +158,7 @@ static void DrawFocusRect(wxWindow* win, wxDC& dc, const wxRect& rect, int flags
                      dc.LogicalToDeviceX(rect.x),
                      dc.LogicalToDeviceY(rect.y),
                      rect.width,
-                     rect.height );
+                     rect.height );*/
 #elif (defined(__WXMAC__))
 
 #if wxMAC_USE_CORE_GRAPHICS
@@ -275,6 +324,7 @@ wxMoAuiTabArt::wxMoAuiTabArt()
     wxColor base_colour = toolbarbrush.GetColour();
 #else
     wxColor base_colour = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
+    //wxColor base_colour(127,127,127);
 #endif
 
     // the base_colour is too pale to use as our base colour,
@@ -314,7 +364,7 @@ wxMoAuiTabArt::~wxMoAuiTabArt()
 
 wxAuiTabArt* wxMoAuiTabArt::Clone()
 {
-    wxMoAuiTabArt* art = new wxMoAuiTabArt;
+    wxMoAuiTabArt* art = new wxMoAuiTabArt();
     art->SetNormalFont(m_normal_font);
     art->SetSelectedFont(m_selected_font);
     art->SetMeasuringFont(m_measuring_font);
@@ -930,3 +980,26 @@ void wxMoAuiTabArt::SetMeasuringFont(const wxFont& font)
 {
     m_measuring_font = font;
 }
+
+
+#if WX_MAJOR_VERSION>=3
+void wxMoAuiTabArt::SetColour(const wxColour& colour) {
+}
+
+void wxMoAuiTabArt::SetActiveColour(const wxColour& colour) {
+}
+
+void wxMoAuiTabArt::DrawBorder(wxDC&, wxWindow*, const wxRect&) {
+}
+
+int wxMoAuiTabArt::GetBorderWidth(wxWindow*) {
+	return 0;
+}
+
+int wxMoAuiTabArt::GetAdditionalBorderSpace(wxWindow*) {
+	return 0;
+}
+#endif
+
+
+

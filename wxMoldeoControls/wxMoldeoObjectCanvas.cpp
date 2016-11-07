@@ -162,7 +162,10 @@ wxMoldeoObjectCanvas::OnPaint(wxPaintEvent& event) {
     dc.SetFont(wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL ));
     dc.DrawText(deb,10,4);
 
+#if wxMAJOR_VERSION>=3
+#else
     wxScrolledWindow::OnPaint(event);
+#endif
 
     if (m_bLineDrawing) {
         LineEndX = ScreenToClient(wxGetMousePosition()).x;
