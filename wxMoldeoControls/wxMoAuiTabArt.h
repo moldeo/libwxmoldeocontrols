@@ -4,7 +4,7 @@
 #include <wx/aui/auibook.h>
 #include <wx/app.h>
 
-#define wxASSERT(condition) {}
+//#define wxASSERT(condition) {}
 
 #ifdef WXMAKINGDLL_MOAUITABART
     #define WXDLLIMPEXP_MOAUITABART WXEXPORT
